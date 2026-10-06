@@ -1,0 +1,195 @@
+---
+import '~/assets/styles/results-diary.css';
+const entries = [
+  {
+    name: '同学 A',
+    route: '三年制大专 · 英语阅读',
+    date: '2024.06 / MOCK',
+    score: '阅读方法逐渐清楚了',
+    quote: '以前做阅读题经常凭感觉选。现在会先找转折句，再回到上下文核对。错题也知道该怎么整理。',
+    note: '示意学习反馈，不代表成绩承诺。',
+    color: '#c06d4d',
+    stamp: 'READING',
+  },
+  {
+    name: '同学 B',
+    route: '五年一贯制 · 数学',
+    date: '2024.08 / MOCK',
+    score: '终于能把步骤讲明白',
+    quote: '老师让我把每一步为什么这样写说出来。发现问题不是公式没背，而是条件漏看了。',
+    note: '姓名、对话和内容均为虚构。',
+    color: '#63806d',
+    stamp: 'MATH',
+  },
+  {
+    name: '同学 C',
+    route: '三年制大专 · 学习复盘',
+    date: '2024.10 / MOCK',
+    score: '每周复盘开始有抓手',
+    quote: '不再把一周塞满。挑几道错题重新做，能看出是概念、审题还是步骤出了问题。',
+    note: '作为页面交互原型使用。',
+    color: '#89779b',
+    stamp: 'REVIEW',
+  },
+  {
+    name: '同学 D',
+    route: '五年一贯制 · 英语基础',
+    date: '2025.01 / MOCK',
+    score: '愿意主动开口问问题',
+    quote: '把不懂的位置记下来以后，提问具体多了。回头看笔记，也能找到当时是怎么想的。',
+    note: '不可作为真实学员案例引用。',
+    color: '#a27648',
+    stamp: 'NOTES',
+  },
+  {
+    name: '同学 E',
+    route: '三年制大专 · 备考规划',
+    date: '2025.03 / MOCK',
+    score: '计划终于能照着执行',
+    quote: '先确认当前阶段，再排每周任务。做不完时会调整重点，不会只觉得自己进度落后。',
+    note: 'Mock 内容，待真实授权素材替换。',
+    color: '#4c7883',
+    stamp: 'PLAN',
+  },
+  {
+    name: '同学 F',
+    route: '阶段记录 · 学习方法',
+    date: '2025.05 / MOCK',
+    score: '能看见自己怎么进步',
+    quote: '把前几周的练习放在一起看，能发现同一种错误少了。过程比单次分数更有参考价值。',
+    note: '非真实学生评价或成绩截图。',
+    color: '#a35450',
+    stamp: 'TRACE',
+  },
+  {
+    name: '同学 G',
+    route: '三年制大专 · 语文',
+    date: '2025.06 / MOCK',
+    score: '表达不再只剩下感觉',
+    quote: '开始给自己的判断找原文证据。写提纲时，也知道哪一句是在说明，哪一句是在转折。',
+    note: '反馈墙示例内容。',
+    color: '#657b9a',
+    stamp: 'TEXT',
+  },
+  {
+    name: '同学 H',
+    route: '阶段记录 · 错题整理',
+    date: '2025.07 / MOCK',
+    score: '错题本终于会回看',
+    quote: '不是抄满整页，而是写下当时为什么错。过一段时间再看，能找到重复出现的问题。',
+    note: '仅作为视觉原型。',
+    color: '#9b7057',
+    stamp: 'TRACE',
+  },
+  {
+    name: '同学 I',
+    route: '三年制大专 · 专业课',
+    date: '2025.08 / MOCK',
+    score: '知道先从哪里补起',
+    quote: '把章节拆开以后，不会一看到薄弱项就整本重学，而是先补最影响下一步的那一处。',
+    note: '示例反馈，不代表真实案例。',
+    color: '#768b58',
+    stamp: 'START',
+  },
+  {
+    name: '同学 J',
+    route: '五年一贯制 · 规划',
+    date: '2025.09 / MOCK',
+    score: '安排变得有先后顺序',
+    quote: '以前所有事情都挤在一起，现在先确认截止时间，再给每天留一件能完成的事。',
+    note: '姓名与内容均为虚构。',
+    color: '#b56c72',
+    stamp: 'ORDER',
+  },
+  {
+    name: '同学 K',
+    route: '阶段记录 · 复习节奏',
+    date: '2025.10 / MOCK',
+    score: '复习不再只看时长',
+    quote: '现在会记录做完了什么，以及哪里还不能解释。时间变少时，也知道先保留哪一部分。',
+    note: '仅用于反馈墙视觉演示。',
+    color: '#547f82',
+    stamp: 'RHYTHM',
+  },
+  {
+    name: '同学 L',
+    route: '三年制大专 · 阅读记录',
+    date: '2025.11 / MOCK',
+    score: '能把依据圈出来了',
+    quote: '选答案之前先回到原文找依据，虽然慢一点，但复盘时更容易知道自己到底判断错在哪里。',
+    note: '待真实授权素材替换。',
+    color: '#8b7192',
+    stamp: 'PROOF',
+  },
+];
+---
+
+<section class="results-diary" id="results" aria-labelledby="results-title" data-results-diary>
+  <div class="diary-pin">
+    <header class="diary-heading">
+      <div>
+        <span class="chapter-label">03 / 学习来信 · 内容原型</span><h2 id="results-title">
+          每一种反馈，<br />都在墙上留下位置。
+        </h2>
+      </div>
+      <p>
+        滚动让信息进入视野，停下鼠标，墙上的记录各自呼吸。<br /><strong
+          >以下人物、时间、对话和结果均为虚构内容，仅演示版式与交互。</strong
+        >
+      </p>
+    </header>
+    <div class="feedback-wall" aria-label="示例学员反馈墙">
+      <div class="wall-meta"><span>STUDENT NOTES / 12</span><span>MOCK ARCHIVE</span></div>
+      <div class="wall-rule wall-rule-one" aria-hidden="true"></div><div
+        class="wall-rule wall-rule-two"
+        aria-hidden="true"
+      >
+      </div>
+      {
+        entries.map((entry, index) => (
+          <button
+            class="feedback-orbit"
+            type="button"
+            data-feedback-thumb={index}
+            data-route={entry.route}
+            data-score={entry.score}
+            data-quote={entry.quote}
+            data-name={entry.name}
+            data-note={entry.note}
+            aria-label={`查看${entry.name}的示例反馈`}
+            style={`--entry-color:${entry.color};--entry-left:${12 + ((index * 31) % 77)}%;--entry-top:${18 + ((index * 43) % 67)}%;--entry-delay:${(index * 1.17) % 4.7}s;--entry-duration:${6.5 + (index % 4) * 1.4}s;`}
+          >
+            <span class="orbit-inner">
+              <>
+                <small>{entry.date}</small>
+                <strong>{entry.score}</strong>
+                <i>
+                  {entry.name} · {entry.stamp}
+                </i>
+              </>
+            </span>
+          </button>
+        ))
+      }
+      <div class="wall-caption">
+        <span>滚动浏览 / 记录会经过，也会留下</span><span>鼠标悬停查看一条完整反馈 ↗</span>
+      </div>
+      <aside class="feedback-overlay" data-feedback-overlay aria-hidden="true">
+        <div class="overlay-card">
+          <span class="overlay-index">FEEDBACK / <b>01</b></span><button
+            class="overlay-close"
+            type="button"
+            data-feedback-close
+            aria-label="关闭反馈详情">×</button
+          >
+          <p class="overlay-route" data-feedback-route></p><h3 data-feedback-score></h3><blockquote data-feedback-quote>
+          </blockquote>
+          <div class="overlay-sign"><span data-feedback-name></span><i></i><small data-feedback-note></small></div>
+        </div>
+      </aside>
+    </div>
+    <p class="diary-scroll-note">
+      <span class="diary-progress"><i></i></span>滚动让反馈进入墙面 · 悬停或聚焦查看第二层详情
+    </p>
+  </div>
+</section>

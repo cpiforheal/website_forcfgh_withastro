@@ -1,0 +1,370 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import FacultyStory from '~/components/FacultyStory.astro';
+import PageTimeline from '~/components/PageTimeline.astro';
+import ResultsDiary from '~/components/ResultsDiary.astro';
+import MaterialsStack from '~/components/MaterialsStack.astro';
+import '~/assets/styles/study-home.css';
+const metadata = {
+  title: '澄方启航｜从一道题开始',
+  description: '江苏专转本课程与备考。翻开一页英语阅读讲义，看看问题如何被理解。',
+  ignoreTitleTemplate: true,
+};
+const chapters = [
+  {
+    title: '先读懂这一句。',
+    label: '读题',
+    text: '遇到不认识的词，不必马上停下来。先找到一句话里的转折，再判断作者真正想说什么。',
+    aside: '试着点一下讲义里的 however。',
+  },
+  {
+    title: '答案藏在关系里。',
+    label: '拆解',
+    text: '前半句谈学习时间，后半句谈复盘。However 把重心转向后者：时间很重要，但检查自己的错误同样重要。',
+    aside: '看看这句话是怎样被拆开的。',
+  },
+  {
+    title: '把方法留到下一题。',
+    label: '复盘',
+    text: '这次记住的不只是一个选项。下次读到 but、yet 或 however，先标记转折，再问自己：作者强调的是哪一边？',
+    aside: '在自己的错题本里，留下这一个问题。',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <Fragment slot="head">
+    <script is:inline>
+      if (!location.hash) {
+        history.scrollRestoration = 'manual';
+        window.scrollTo(0, 0);
+        window.addEventListener('pageshow', () => window.scrollTo(0, 0), { once: true });
+      }
+    </script>
+  </Fragment>
+  <Fragment slot="announcement"></Fragment>
+  <header slot="header" class="study-header">
+    <a class="study-brand" href="#top" aria-label="澄方启航首页"
+      ><span class="brand-mark" aria-hidden="true">启</span>澄方启航</a
+    >
+    <nav aria-label="首页导航">
+      <a href="#courses">课程现场</a><a href="#faculty">师资展示</a><a href="#path">学制路径</a><a href="#reading"
+        >备考札记</a
+      >
+    </nav>
+    <span class="header-note">江苏专转本 · 视觉试阅</span>
+  </header>
+  <div class="study-home" id="top">
+    <PageTimeline />
+    <section class="study-intro" aria-labelledby="intro-title">
+      <p class="intro-kicker">三年制大专 / 五年一贯制</p>
+      <h1 id="intro-title" class="hero-slogan">
+        <span class="encrypted-line" data-encrypted-text="从一道题，">从一道题，</span><br /><span
+          class="encrypted-line"
+          data-encrypted-text="开始">开始</span
+        ><span class="intro-stroke colorful-word" data-colorful-text="理解。">理解。</span>
+      </h1>
+      <div class="intro-bottom">
+        <p class="hero-subtitle">江苏专转本课程与备考 · 先翻开一页，看看我们怎么讲。</p><a href="#courses"
+          >向下读一页 <span aria-hidden="true">↓</span></a
+        >
+      </div>
+      <span class="intro-margin" aria-hidden="true">阅读 / 理解 / 再向前一步</span>
+      <span class="hero-slogan-index" aria-hidden="true">01 / 03</span>
+    </section>
+    <section class="study-story" id="courses" aria-label="英语阅读示例讲义">
+      <div class="story-rail">
+        <div class="sheet-frame">
+          <div class="sheet-topline"><span>英语 · 阅读方法</span><span>示例讲义 / 01</span></div>
+          <article class="study-sheet" data-step="0">
+            <div class="sheet-heading"><span>READING NOTES</span><span class="sheet-page">01</span></div>
+            <h2>时间之外，<br />还有什么？</h2>
+            <p class="sheet-instruction">读下面这段话，找出作者强调的内容。</p>
+            <div class="passage" lang="en">
+              <span class="sentence-before">Students often focus on how many hours they study.</span>
+              <button class="word-note" aria-expanded="false" aria-controls="word-explanation"
+                >However<span aria-hidden="true">↗</span></button
+              >, <span class="sentence-after"
+                >reviewing mistakes is just as important as spending time on new material.</span
+              >
+            </div>
+            <div id="word-explanation" class="word-explanation" hidden>
+              <strong>however / 然而</strong><p>
+                这里表示转折。前文强调时长，后文把注意力转向复盘；“just as important”说明二者同样重要。
+              </p>
+            </div>
+            <div class="sheet-analysis">
+              <span class="annotation-label">句子关系</span><div class="relationship">
+                <span>学习时长</span><span class="relationship-arrow" aria-hidden="true">↔</span><span>回看错误</span>
+              </div><p>just as important as = 与……同样重要</p>
+            </div>
+            <div class="sheet-review">
+              <span class="annotation-label">留给下一题</span><p>转折之后，作者强调了什么？</p><span
+                class="pencil-line"
+                aria-hidden="true"></span>
+            </div>
+            <footer class="sheet-footer">
+              <span>教学内容示例，不对应实际开班安排</span><span aria-hidden="true">CF / 01</span>
+            </footer>
+          </article>
+          <div class="reading-position" aria-hidden="true">
+            <span class="position-name">读题</span><span class="position-track"><span></span></span><span
+              class="position-number">01 / 03</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="story-copy">
+        {
+          chapters.map((chapter, i) => (
+            <section class="story-chapter" data-chapter={i} aria-labelledby={`chapter-${i}`}>
+              <>
+                <span class="chapter-label">
+                  0{i + 1} / {chapter.label}
+                </span>
+                <h2 id={`chapter-${i}`}>{chapter.title}</h2>
+                <p>{chapter.text}</p>
+                <small>{chapter.aside}</small>
+              </>
+            </section>
+          ))
+        }
+      </div>
+    </section>
+    <FacultyStory />
+    <ResultsDiary />
+    <MaterialsStack />
+    <section class="portal-notes" id="path" aria-label="学制路径与课程信息">
+      <div class="portal-note-intro">
+        <span class="chapter-label">02 / 讲义旁注</span><h2>同一套方法，<br />面对不同的路。</h2><p>
+          学制、课程和咨询信息不另起一组卡片，而是作为讲义旁边的注解出现。先看懂一页，再决定从哪条路径继续。
+        </p>
+      </div><div class="portal-note-list">
+        <article>
+          <span>学制路径</span><h3>三年制大专 / 五年一贯制</h3><p>
+            先确认学制、在读年级和目标专业，再根据当年官方通知核对报考条件。
+          </p><a href="#reading">查看备考札记 ↗</a>
+        </article><article>
+          <span>课程方法</span><h3>输入 → 练习 → 复盘</h3><p>
+            线上课程不只是一张课表。每一周都应留下一个可以回看的结果。
+          </p><a href="#reading">读一段方法 ↗</a>
+        </article><article>
+          <span>公开核验</span><h3>信息先说清楚，再开始咨询</h3><p>
+            机构、课程、师资和隐私说明应当公开，真实资料到位后再替换示例内容。
+          </p><a href="#about">查看网站说明 ↗</a>
+        </article>
+      </div>
+    </section>
+    <!-- The page-turn sequence is intentionally one continuous reading object. -->
+    <section class="page-turn-break" aria-hidden="true">
+      <span>继续翻页</span><i></i><span>下一页不是另一张卡片</span>
+    </section>
+    <section class="study-story portal-sequence" id="path-example" aria-label="学制路径示例" hidden>
+      <div class="story-rail">
+        <div class="sheet-frame">
+          <div class="sheet-topline"><span>升学路径 · 学制判断</span><span>路径地图 / 02</span></div>
+          <article class="study-sheet sequence-sheet" data-step="0">
+            <div class="sheet-heading"><span>PATH FINDER</span><span class="sheet-page">02</span></div>
+            <h2>先找到<br />自己的位置。</h2>
+            <p class="sheet-instruction">路径不是越多越好，先确认正在读哪一种学制。</p>
+            <div class="path-map">
+              <div class="path-node active"><b>现在</b><span>三年制大专</span><small>大二 / 大三</small></div><div
+                class="path-line"
+              >
+              </div><div class="path-node">
+                <b>准备</b><span>公共课 + 专业课</span><small>按年度政策核对</small>
+              </div><div class="path-line"></div><div class="path-node">
+                <b>报考</b><span>院校与专业选择</span><small>以官方通知为准</small>
+              </div>
+            </div>
+            <div class="sheet-analysis">
+              <span class="annotation-label">先核对三件事</span><div class="check-list">
+                <span>✓ 当前学制</span><span>✓ 在读年级</span><span>✓ 目标专业</span>
+              </div><p>不确定时，先记录问题，再做选择。</p>
+            </div>
+            <div class="sheet-review">
+              <span class="annotation-label">给自己留一句</span><p>我现在在哪一步，下一步要确认什么？</p><span
+                class="pencil-line"
+                aria-hidden="true"></span>
+            </div>
+            <footer class="sheet-footer">
+              <span>路径说明示例，具体报考要求以官方发布为准</span><span aria-hidden="true">CF / 02</span>
+            </footer>
+          </article>
+          <div class="reading-position" aria-hidden="true">
+            <span class="position-name">现在</span><span class="position-track"><span></span></span><span
+              class="position-number">01 / 03</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="story-copy">
+        <section class="story-chapter" data-chapter="0">
+          <span class="chapter-label">01 / 确认</span><h2>先知道自己从哪里出发。</h2><p>
+            三年制大专和五年一贯制不是同一条路径。先把学制、年级和专业记下来，后面的信息才有对应的位置。
+          </p><small>滚动，查看下一步。</small>
+        </section><section class="story-chapter" data-chapter="1">
+          <span class="chapter-label">02 / 规划</span><h2>把准备拆成几段路。</h2><p>
+            公共课、专业课和时间安排需要被分别看见。课程不是一张万能课表，而是围绕当前阶段逐步展开。
+          </p><small>不同阶段，重点不同。</small>
+        </section><section class="story-chapter" data-chapter="2">
+          <span class="chapter-label">03 / 核对</span><h2>最后再确认具体条件。</h2><p>
+            招生院校、专业和考试政策会更新。网站提供整理后的阅读入口，报考事项始终以官方信息为准。
+          </p><small>确定之前，保留核对习惯。</small>
+        </section>
+      </div>
+    </section>
+    <section class="study-story portal-sequence" id="method" aria-label="课程方法示例" hidden>
+      <div class="story-rail">
+        <div class="sheet-frame">
+          <div class="sheet-topline"><span>课程现场 · 一周安排</span><span>方法拆解 / 03</span></div><article
+            class="study-sheet sequence-sheet"
+            data-step="0"
+          >
+            <div class="sheet-heading"><span>WEEKLY METHOD</span><span class="sheet-page">03</span></div><h2>
+              一周不是<br />一张待办清单。
+            </h2><p class="sheet-instruction">把输入、练习和回看放进同一个循环。</p><div class="week-grid">
+              <div><b>MON</b><span>新知识</span><i>理解一小节</i></div><div>
+                <b>WED</b><span>集中练</span><i>做三道题</i>
+              </div><div><b>FRI</b><span>回头看</span><i>找出错误</i></div><div>
+                <b>SUN</b><span>再安排</span><i>调整下周</i>
+              </div>
+            </div><div class="sheet-analysis">
+              <span class="annotation-label">学习循环</span><div class="cycle-line">
+                <span>输入</span><b>→</b><span>练习</span><b>→</b><span>复盘</span>
+              </div><p>每一周都要留下一个可以回看的结果。</p>
+            </div><div class="sheet-review">
+              <span class="annotation-label">问自己</span><p>这周哪一道题，值得再看一次？</p><span
+                class="pencil-line"
+                aria-hidden="true"></span>
+            </div><footer class="sheet-footer">
+              <span>学习安排示例，不代表固定课表</span><span aria-hidden="true">CF / 03</span>
+            </footer>
+          </article><div class="reading-position" aria-hidden="true">
+            <span class="position-name">新知识</span><span class="position-track"><span></span></span><span
+              class="position-number">01 / 03</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="story-copy">
+        <section class="story-chapter" data-chapter="0">
+          <span class="chapter-label">01 / 输入</span><h2>先把一个知识点讲明白。</h2><p>
+            课程从具体问题开始，不追求一次覆盖所有内容。先知道这一节要解决什么，再进入练习。
+          </p><small>停下时，主体会留在这一页。</small>
+        </section><section class="story-chapter" data-chapter="1">
+          <span class="chapter-label">02 / 练习</span><h2>把听懂变成做出来。</h2><p>
+            一道题、一段表达或一组词汇，都需要一次主动完成。练习不是为了堆数量，而是暴露真正卡住的位置。
+          </p><small>鼠标经过细节，可查看局部说明。</small>
+        </section><section class="story-chapter" data-chapter="2">
+          <span class="chapter-label">03 / 复盘</span><h2>给下一周留一条线索。</h2><p>
+            复盘让学习有了回声：哪些已经掌握，哪些需要提问，下一次从哪里继续，都应该被记录下来。
+          </p><small>完成不是终点，是下一次安排的依据。</small>
+        </section>
+      </div>
+    </section>
+    <section class="study-story portal-sequence" id="trust" aria-label="机构信息核验示例" hidden>
+      <div class="story-rail">
+        <div class="sheet-frame">
+          <div class="sheet-topline"><span>机构信息 · 公开核验</span><span>信息清单 / 04</span></div><article
+            class="study-sheet sequence-sheet"
+            data-step="0"
+          >
+            <div class="sheet-heading"><span>OPEN RECORD</span><span class="sheet-page">04</span></div><h2>
+              在咨询之前，<br />先看清楚。
+            </h2><p class="sheet-instruction">一份值得信任的机构，应该愿意把信息放在明处。</p><div class="record-list">
+              <div><span>机构名称</span><b>正式名称 / 待核实</b></div><div>
+                <span>课程服务</span><b>线上课程与备考咨询</b>
+              </div><div><span>公开资料</span><b>课程、师资、政策来源</b></div><div>
+                <span>咨询方式</span><b>电话 / 微信 / 表单</b>
+              </div>
+            </div><div class="sheet-analysis">
+              <span class="annotation-label">提交信息之前</span><div class="privacy-line">
+                <span>用途明确</span><span>同意后提交</span><span>可查看隐私说明</span>
+              </div><p>手机号只用于咨询联系，具体说明应当在表单旁清楚展示。</p>
+            </div><div class="sheet-review">
+              <span class="annotation-label">留一个问题</span><p>我还需要确认哪一项信息？</p><span
+                class="pencil-line"
+                aria-hidden="true"></span>
+            </div><footer class="sheet-footer">
+              <span>机构资料与资质需经机构方确认后发布</span><span aria-hidden="true">CF / 04</span>
+            </footer>
+          </article><div class="reading-position" aria-hidden="true">
+            <span class="position-name">机构</span><span class="position-track"><span></span></span><span
+              class="position-number">01 / 03</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="story-copy">
+        <section class="story-chapter" data-chapter="0">
+          <span class="chapter-label">01 / 公开</span><h2>先说明自己是谁。</h2><p>
+            机构名称、服务对象和课程边界应该清楚出现。网站不是把所有内容藏在咨询之后，而是先让访客能判断是否适合继续了解。
+          </p><small>信息越清楚，选择越从容。</small>
+        </section><section class="story-chapter" data-chapter="1">
+          <span class="chapter-label">02 / 可核验</span><h2>再说明哪些内容有依据。</h2><p>
+            师资、案例、政策和课程安排都需要有来源或状态说明。暂时缺少真实材料时，应明确标记为示例，不用虚构填充。
+          </p><small>真实资料到位后，再替换示例。</small>
+        </section><section class="story-chapter" data-chapter="2">
+          <span class="chapter-label">03 / 再联系</span><h2>最后决定是否继续聊。</h2><p>
+            咨询入口可以存在，但不抢先打断阅读。用户知道联系方式如何使用、信息如何保护之后，再选择电话、微信或表单。
+          </p><small>信任先于行动。</small>
+        </section>
+      </div>
+    </section>
+    <section class="reading-desk" id="reading" aria-labelledby="reading-title">
+      <div class="desk-heading">
+        <span>合上讲义之后</span><h2 id="reading-title">备考札记</h2><p>
+          几个值得先想清楚的问题。<br />点开标题，接着读。
+        </p>
+      </div>
+      <div class="reading-list">
+        <details>
+          <summary
+            ><span class="entry-kind">起点</span><span>三年制与五年一贯制，先确认自己的路径。</span><span
+              class="entry-plus"
+              aria-hidden="true">+</span
+            ></summary
+          ><div class="entry-body">
+            先记录自己的学制、在读年级和专业，再核对相应年度的官方报考通知。两类路径的报考条件和考试安排不能混用。具体资格、科目与时间，以江苏省教育考试院和招生院校当年发布的信息为准。
+          </div>
+        </details>
+        <details>
+          <summary
+            ><span class="entry-kind">安排</span><span>这一周，给错题留一点时间。</span><span
+              class="entry-plus"
+              aria-hidden="true">+</span
+            ></summary
+          ><div class="entry-body">
+            在计划里单独留出一次复盘：选三道错题，不看原答案重新作答。写下出错原因，再判断需要补知识、重读题意，还是调整解题步骤。下一周先检查这三道题。
+          </div>
+        </details>
+        <details>
+          <summary
+            ><span class="entry-kind">方法</span><span>听懂了，和自己能做出来之间。</span><span
+              class="entry-plus"
+              aria-hidden="true">+</span
+            ></summary
+          ><div class="entry-body">
+            合上笔记，用自己的话解释一个知识点，再做一道同类型题。如果解释卡住，回到那一步，而不是从头重看全部内容。把卡住的位置记下来，下次提问会更具体。
+          </div>
+        </details>
+      </div>
+    </section>
+    <section class="study-about" id="about">
+      <span class="brand-mark" aria-hidden="true">启</span><div>
+        <h2>澄方启航</h2><p>江苏专转本课程与备考门户。</p><p class="demo-disclosure">
+          当前为视觉与交互试阅版。讲义为编写示例，机构、课程及师资资料待核实补充。
+        </p>
+      </div><a href="#top">回到第一页 ↑</a>
+    </section>
+  </div>
+  <footer slot="footer" class="study-footer">
+    <span>澄方启航 · 学习，从理解开始</span><span>视觉原型 / 示例内容</span>
+  </footer>
+</Layout>
+<script>
+  import { initStudyHome } from '~/scripts/study-home';
+  initStudyHome();
+  document.addEventListener('astro:page-load', initStudyHome);
+</script>

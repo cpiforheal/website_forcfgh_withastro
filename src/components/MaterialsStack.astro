@@ -1,0 +1,84 @@
+---
+import '~/assets/styles/materials-stack.css';
+const materials = [
+  {
+    title: '专转本英语阅读方法',
+    kind: '纸质书籍 · 示例封面',
+    image: '/images/mock-materials/english-reading.svg',
+    accent: '#c96c4c',
+  },
+  {
+    title: '高等数学基础练习',
+    kind: '纸质书籍 · 示例封面',
+    image: '/images/mock-materials/math-foundation.svg',
+    accent: '#526f72',
+  },
+  {
+    title: '错题复盘手册',
+    kind: '学习手册 · 示例封面',
+    image: '/images/mock-materials/review-notes.svg',
+    accent: '#88739a',
+  },
+  {
+    title: '三年制备考书客包',
+    kind: '资料组合 · 示例封面',
+    image: '/images/mock-materials/three-year-pack.svg',
+    accent: '#aa774d',
+  },
+  {
+    title: '五年一贯制起步包',
+    kind: '资料组合 · 示例封面',
+    image: '/images/mock-materials/five-year-pack.svg',
+    accent: '#607e67',
+  },
+  {
+    title: '阶段复习资料包',
+    kind: '资料组合 · 示例封面',
+    image: '/images/mock-materials/review-pack.svg',
+    accent: '#a35450',
+  },
+];
+---
+
+<section class="materials-stack" id="materials" aria-labelledby="materials-title" data-materials-stack>
+  <header class="materials-heading">
+    <div>
+      <span class="chapter-label">04 / 资料汇总 · 内容原型</span><h2 id="materials-title">
+        把用过的资料，<br />先放在这里。
+      </h2>
+    </div>
+    <p>
+      已出版书籍与由资料构成的书客包会集中展示。<br /><strong
+        >当前为 mock 封面，仅用于展示，不标注价格，也不代表现货或购买入口。</strong>
+    </p>
+  </header>
+  <div class="materials-stage" data-materials-scroll>
+    <div class="materials-stack-intro">
+      <span>PRINTED MATTER / MOCK</span><strong>向下滚动 ↓</strong><small>资料仅作展示 · 暂无价格</small>
+    </div>
+    <div class="materials-stack-items">
+      {
+        materials.map((material, index) => (
+          <div class="materials-stack-item" data-material-item={index}>
+            <article class="material-card" style={`--card-accent:${material.accent};`}>
+              <div class="material-cover">
+                <img src={material.image} alt={`${material.title} mock 封面`} width="720" height="960" loading="lazy" />
+              </div>
+              <div class="material-card-info">
+                <>
+                  <span>{material.kind}</span>
+                  <h3>{material.title}</h3>
+                  <small>MOCK MATERIAL / {String(index + 1).padStart(2, '0')}</small>
+                </>
+              </div>
+            </article>
+          </div>
+        ))
+      }
+    </div>
+    <div class="materials-stage-foot">
+      <span>每份资料从下方进入，依次叠放</span><span data-material-count>01 / 06</span>
+    </div>
+  </div>
+  <p class="materials-scroll-note"><span class="materials-progress"><i></i></span>书籍与资料组合 / 06</p>
+</section>

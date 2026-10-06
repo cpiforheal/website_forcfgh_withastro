@@ -1,0 +1,249 @@
+.faculty-story {
+  border-top: 1px solid #bcc5b7;
+  padding: 65px 0 80px;
+}
+.faculty-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.faculty-heading h2 {
+  font:
+    400 clamp(30px, 3.3vw, 48px)/1.25 'SimSun',
+    serif;
+  margin: 14px 0 0;
+}
+.faculty-heading p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #607367;
+  max-width: 330px;
+}
+.faculty-heading strong {
+  font-weight: 400;
+  font-size: 11px;
+}
+.faculty-axis {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-top: 14px;
+  margin-bottom: 25px;
+}
+.faculty-axis-line {
+  position: absolute;
+  left: 16.666%;
+  right: 16.666%;
+  top: 7px;
+  height: 1px;
+  background: #bcc5b7;
+}
+.faculty-axis-line i {
+  display: block;
+  height: 2px;
+  background: #a3412d;
+  transform: scaleX(var(--faculty-progress, 0));
+  transform-origin: left;
+}
+.faculty-axis a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 10px;
+  padding: 15px 0 5px;
+  color: #65776a;
+}
+.faculty-axis a[aria-current] {
+  color: #a3412d;
+}
+.faculty-axis small {
+  font: 10px monospace;
+}
+.faculty-axis em {
+  font-size: 11px;
+  font-style: normal;
+}
+.faculty-dot {
+  position: absolute;
+  top: -11px;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  border: 1px solid #a3412d;
+  border-radius: 50%;
+  background: #f5f3ec;
+  transition:
+    background 0.4s,
+    box-shadow 0.4s;
+}
+.faculty-axis a[aria-current] .faculty-dot {
+  background: #a3412d;
+  box-shadow: 0 0 0 5px #a3412d15;
+}
+.faculty-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(25px, 5vw, 75px);
+  align-items: center;
+  padding: 25px 0 50px;
+  scroll-margin-top: 100px;
+}
+.faculty-portrait {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  justify-self: center;
+  margin: 0;
+}
+.faculty-portrait svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.faculty-portrait figcaption {
+  color: #65776a;
+  font-size: 10px;
+  margin-top: 10px;
+}
+.faculty-subject {
+  color: var(--portrait-ink);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.faculty-biography h3 {
+  font:
+    400 36px 'SimSun',
+    serif;
+  margin: 14px 0;
+}
+.faculty-biography h3 small {
+  display: inline-block;
+  font: 10px sans-serif;
+  color: #778477;
+  margin-left: 20px;
+}
+.faculty-biography blockquote {
+  margin: 0 0 16px;
+  font:
+    22px/1.5 'SimSun',
+    serif;
+}
+.faculty-biography > p {
+  font-size: 13px;
+  color: #607367;
+  line-height: 1.9;
+  max-width: 490px;
+}
+.faculty-biography dl {
+  border-top: 1px solid #cdd0c3;
+  margin-top: 22px;
+  padding-top: 16px;
+}
+.faculty-biography dl div {
+  display: grid;
+  grid-template-columns: 65px 1fr;
+  gap: 15px;
+  margin: 8px 0;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.faculty-biography dt {
+  color: #8b7860;
+}
+.faculty-biography dd {
+  margin: 0;
+}
+.faculty-footnote {
+  font-size: 10px;
+  color: #778477;
+  margin: 14px 0 0;
+}
+/* The controller enables pinning only when the whole stage fits the viewport. */
+.faculty-story.is-faculty-motion {
+  height: 360vh;
+  padding-top: 0;
+}
+.is-faculty-motion .faculty-pin {
+  position: sticky;
+  top: 88px;
+  padding-top: 22px;
+}
+.is-faculty-motion .faculty-stage {
+  position: relative;
+  height: 390px;
+}
+.is-faculty-motion .faculty-panel {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  opacity: var(--teacher-opacity, 0);
+  transform: translateY(var(--teacher-y, 35px));
+  will-change: opacity, transform;
+}
+.is-faculty-motion .faculty-portrait {
+  max-width: 275px;
+  transform: translateX(var(--teacher-x, 0px)) scale(var(--teacher-scale, 0.97));
+  transform-origin: var(--portrait-anchor) top;
+}
+.is-faculty-motion .faculty-biography {
+  transform: translateY(var(--bio-y, 20px));
+}
+@media (min-width: 901px) and (max-height: 850px) {
+  .is-faculty-motion .faculty-heading {
+    margin-bottom: 18px;
+  }
+  .is-faculty-motion .faculty-heading h2 {
+    font-size: 32px;
+  }
+  .is-faculty-motion .faculty-stage {
+    height: 330px;
+  }
+  .is-faculty-motion .faculty-portrait {
+    max-width: 235px;
+  }
+  .is-faculty-motion .faculty-biography h3 {
+    font-size: 30px;
+    margin: 10px 0;
+  }
+  .is-faculty-motion .faculty-biography blockquote {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 900px) {
+  .faculty-heading {
+    display: block;
+  }
+  .faculty-heading p {
+    margin-top: 20px;
+  }
+  .faculty-axis a {
+    flex-wrap: wrap;
+    gap: 5px;
+    font-size: 13px;
+  }
+  .faculty-axis em {
+    width: 100%;
+    text-align: center;
+  }
+  .faculty-panel {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    border-bottom: 1px solid #cdd0c3;
+    padding: 30px 0;
+  }
+  .faculty-portrait {
+    max-width: 260px;
+  }
+  .faculty-biography h3 {
+    font-size: 30px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faculty-dot {
+    transition: none;
+  }
+}

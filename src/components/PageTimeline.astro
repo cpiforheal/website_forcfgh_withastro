@@ -1,0 +1,37 @@
+---
+import '~/assets/styles/page-timeline.css';
+const items = [
+  { id: 'faculty', label: '师资展示', summary: '看方法背后的讲台与老师。' },
+  { id: 'results', label: '学习来信', summary: '阅读具体的学习反馈与结果。' },
+  { id: 'materials', label: '资料汇总', summary: '查看课程中使用的示例资料。' },
+  { id: 'path', label: '学制路径', summary: '确认当前学制与下一步安排。' },
+  { id: 'reading', label: '备考札记', summary: '把问题留下，再继续阅读。' },
+  { id: 'about', label: '网站说明', summary: '了解机构资料与示例状态。' },
+];
+---
+
+<aside class="page-timeline" data-page-timeline aria-label="页面章节导航">
+  <div class="page-timeline-line" aria-hidden="true"><i></i></div>
+  <div class="page-timeline-copy">
+    <span class="page-timeline-kicker">READING MAP</span>
+    <strong data-timeline-label>{items[0].label}</strong>
+    <p data-timeline-summary>{items[0].summary}</p>
+  </div>
+  <nav>
+    {
+      items.map((item, index) => (
+        <a href={`#${item.id}`} data-timeline-node={index} aria-label={item.label}>
+          <>
+            <i aria-hidden="true" />
+            <span>{item.label}</span>
+          </>
+        </a>
+      ))
+    }
+  </nav>
+</aside>
+<script>
+  import { initPageTimeline } from '~/scripts/page-timeline';
+  initPageTimeline();
+  document.addEventListener('astro:page-load', initPageTimeline);
+</script>

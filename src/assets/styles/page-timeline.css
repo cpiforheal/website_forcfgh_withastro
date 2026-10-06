@@ -1,0 +1,106 @@
+.page-timeline {
+  position: fixed;
+  z-index: 20;
+  top: 50%;
+  left: max(18px, calc((100vw - 1440px) / 2 - 92px));
+  width: 150px;
+  transform: translateY(-50%);
+  color: #647369;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 520ms ease,
+    visibility 0s linear 520ms;
+}
+.page-timeline.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+.page-timeline-line {
+  position: absolute;
+  top: 102px;
+  bottom: 5px;
+  left: 4px;
+  width: 1px;
+  background: #c9cec2;
+}
+.page-timeline-line i {
+  display: block;
+  width: 1px;
+  height: var(--timeline-progress, 0%);
+  background: #a3412d;
+  transition: height 160ms linear;
+}
+.page-timeline-copy {
+  min-height: 82px;
+  padding-left: 22px;
+}
+.page-timeline-kicker {
+  display: block;
+  color: #a3412d;
+  font: 9px monospace;
+  letter-spacing: 0.1em;
+}
+.page-timeline-copy strong {
+  display: block;
+  margin-top: 9px;
+  color: #263d36;
+  font:
+    400 16px/1.3 'SimSun',
+    serif;
+}
+.page-timeline-copy p {
+  margin: 5px 0 0;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.page-timeline nav {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+.page-timeline nav a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  font-size: 10px;
+  pointer-events: auto;
+  text-decoration: none;
+}
+.page-timeline nav a i {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 9px;
+  height: 9px;
+  border: 1px solid #aeb9aa;
+  border-radius: 50%;
+  background: #f5f3ec;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+.page-timeline nav a[aria-current='step'] {
+  color: #a3412d;
+}
+.page-timeline nav a[aria-current='step'] i {
+  border-color: #a3412d;
+  background: #a3412d;
+  transform: scale(1.35);
+}
+@media (max-width: 1280px) {
+  .page-timeline {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-timeline-line i,
+  .page-timeline nav a i {
+    transition: none;
+  }
+}

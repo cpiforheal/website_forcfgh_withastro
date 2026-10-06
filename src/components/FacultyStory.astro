@@ -1,0 +1,128 @@
+---
+import '~/assets/styles/faculty-story.css';
+const teachers = [
+  {
+    name: '林老师',
+    subject: '英语阅读',
+    tag: '从一句话，读到一段逻辑。',
+    intro: '示例教学侧重句子关系与篇章理解。先让学生说出判断依据，再讨论选项，而不是只留下一个答案。',
+    method: '圈出转折 → 复述句意 → 回到原文验证',
+    material: '阅读批注 / 长难句拆解 / 错题复盘页',
+    color: '#3e665c',
+    background: '#dce4d9',
+    hair: 'M95 176Q65 65 149 63Q227 68 208 183L188 163L182 109Q140 131 108 112Z',
+  },
+  {
+    name: '陈老师',
+    subject: '高等数学',
+    tag: '每一步，都能说清为什么。',
+    intro: '示例教学把推导过程放在结论之前。用图像理解变化，记录每一步的条件，让一道题留下可迁移的解题路径。',
+    method: '画出关系 → 写明条件 → 检查推导',
+    material: '函数图像 / 推导手稿 / 分步练习',
+    color: '#9b6245',
+    background: '#ebe0cf',
+    hair: 'M92 138Q71 66 146 59Q222 57 209 142L184 105L111 116Z',
+  },
+  {
+    name: '周老师',
+    subject: '大学语文',
+    tag: '读得进去，也表达得出来。',
+    intro: '示例教学从具体文本出发。把阅读观察变成表达证据，在段落修改中看见观点、结构和语言之间的关系。',
+    method: '细读文本 → 找到证据 → 修改表达',
+    material: '篇章细读 / 写作提纲 / 修改对照稿',
+    color: '#686087',
+    background: '#e4deea',
+    hair: 'M89 210L85 121Q81 62 152 59Q219 68 215 132L219 213L190 185L185 112Q142 120 111 103L108 186Z',
+  },
+];
+---
+
+<section class="faculty-story" id="faculty" aria-labelledby="faculty-title">
+  <div class="faculty-pin">
+    <header class="faculty-heading">
+      <div>
+        <span class="chapter-label">02 / 讲台上的人</span><h2 id="faculty-title">方法背后，<br />是怎样的老师。</h2>
+      </div>
+      <p>沿着时间轴，认识每一位老师。<br /><strong>师资原型：以下姓名、简介与肖像均为示例，非真实师资。</strong></p>
+    </header>
+    <nav class="faculty-axis" aria-label="教师浏览时间轴">
+      <div class="faculty-axis-line" aria-hidden="true"><i></i></div>
+      {
+        teachers.map((teacher, index) => (
+          <a href={`#teacher-${index}`} data-faculty-node={index}>
+            <>
+              <span class="faculty-dot" aria-hidden="true" />
+              <small>0{index + 1}</small>
+              <span>{teacher.name}</span>
+              <em>{teacher.subject}</em>
+            </>
+          </a>
+        ))
+      }
+    </nav>
+    <div class="faculty-stage">
+      {
+        teachers.map((teacher, index) => (
+          <article
+            class="faculty-panel"
+            id={`teacher-${index}`}
+            aria-labelledby={`teacher-name-${index}`}
+            style={`--portrait-anchor: ${25 + index * 25}%; --portrait-ink: ${teacher.color};`}
+          >
+            <figure class="faculty-portrait">
+              <svg viewBox="0 0 300 360" role="img" aria-label={`${teacher.name}的原创示意肖像，非真人照片`}>
+                <rect width="300" height="360" fill={teacher.background} />
+                <circle cx="230" cy="75" r="100" fill="#fffef9" opacity=".35" />
+                <path d="M0 285L300 180M0 317L300 212" stroke={teacher.color} opacity=".18" />
+                <path d={teacher.hair} fill="#35433d" />
+                <path d="M122 178L120 226L151 255L180 222L177 178" fill="#cda88a" />
+                <ellipse cx="150" cy="142" rx="48" ry="65" fill="#dfbea0" />
+                <path d={teacher.hair} fill="#35433d" />
+                <path d="M43 360L53 278Q70 229 120 222L151 247L180 222Q244 233 256 281L267 360" fill={teacher.color} />
+                <path d="M120 222L151 247L180 222L170 360H130Z" fill="#f4f0e3" />
+                <path d="M120 222L101 276L129 289M180 222L199 276L172 289" fill="none" stroke="#fffef9" opacity=".45" />
+                <path
+                  d="M117 144H132M167 144H182M140 177Q151 182 164 176"
+                  fill="none"
+                  stroke="#6e5544"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <text x="18" y="337" fill="#fffef9" font-size="11" font-family="monospace">
+                  STUDY / 0{index + 1}
+                </text>
+              </svg>
+              <figcaption>示意肖像 · 非真人照片</figcaption>
+            </figure>
+            <div class="faculty-biography">
+              <span class="faculty-subject">教授科目（示例） / {teacher.subject}</span>
+              <h3 id={`teacher-name-${index}`}>
+                {teacher.name}
+                <small>虚构师资档案 / 0{index + 1}</small>
+              </h3>
+              <blockquote>{teacher.tag}</blockquote>
+              <p>{teacher.intro}</p>
+              <dl>
+                <>
+                  <div>
+                    <>
+                      <dt>课堂方法</dt>
+                      <dd>{teacher.method}</dd>
+                    </>
+                  </div>
+                  <div>
+                    <>
+                      <dt>附加材料</dt>
+                      <dd>{teacher.material}</dd>
+                    </>
+                  </div>
+                </>
+              </dl>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+    <p class="faculty-footnote">滚动浏览 · 也可点击节点 / 所有资料仅用于前端交互演示，不构成师资或开课承诺。</p>
+  </div>
+</section>

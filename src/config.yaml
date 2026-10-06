@@ -1,0 +1,42 @@
+site:
+  name: 澄方启航
+  site: 'http://localhost:8848'
+  base: '/'
+  trailingSlash: false
+
+metadata:
+  title:
+    default: 澄方启航｜江苏专转本课程咨询
+    template: '%s｜澄方启航'
+  description: '面向江苏专转本考生的课程体系与备考咨询服务，覆盖三年制大专与五年一贯制。'
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: 澄方启航
+    images:
+      - url: '~/assets/images/default.png'
+        width: 1200
+        height: 628
+    type: website
+  twitter:
+    handle: ''
+    site: ''
+    cardType: summary_large_image
+
+i18n:
+  language: zh-CN
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: false
+    postsPerPage: 8
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null
+
+ui:
+  theme: 'light:only'
